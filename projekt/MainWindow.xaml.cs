@@ -29,7 +29,7 @@ namespace projekt
         {
             Mag tb = new Mag();
             tb.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void zamowienie_Click(object sender, RoutedEventArgs e)

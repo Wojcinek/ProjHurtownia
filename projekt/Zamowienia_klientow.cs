@@ -26,8 +26,8 @@ namespace projekt
     
         public virtual Klienci Klienci { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Platnosc> Platnosc { get; set; }
+        internal virtual ICollection<Platnosc> Platnosc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Produkty_Zamowienia_klientow> Produkty_Zamowienia_klientow { get; set; }
+        internal virtual ICollection<Produkty_Zamowienia_klientow> Produkty_Zamowienia_klientow { get; set; }
     }
 }

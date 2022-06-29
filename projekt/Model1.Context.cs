@@ -24,7 +24,8 @@ namespace projekt
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+        
+
         public virtual DbSet<Do_zamowienia> Do_zamowienia { get; set; }
         public virtual DbSet<Klienci> Klienci { get; set; }
         public virtual DbSet<Magazyny> Magazyny { get; set; }

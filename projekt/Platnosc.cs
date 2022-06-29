@@ -18,7 +18,7 @@ namespace projekt
         public System.DateTime data_platnosci { get; set; }
         public int id_zamowienia { get; set; }
         public string rodzaj_platnosci { get; set; }
-    
-        public virtual Zamowienia_klientow Zamowienia_klientow { get; set; }
+
+        internal virtual Zamowienia_klientow Zamowienia_klientow { get; set; }
     }
 }

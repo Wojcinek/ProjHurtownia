@@ -28,6 +28,6 @@ namespace projekt
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Zamowienia_klientow> Zamowienia_klientow { get; set; }
+        internal virtual ICollection<Zamowienia_klientow> Zamowienia_klientow { get; set; }
     }
 }

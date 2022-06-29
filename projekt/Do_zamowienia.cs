@@ -24,6 +24,6 @@ namespace projekt
         public System.DateTime data { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Produkty_Do_zamowienia> Produkty_Do_zamowienia { get; set; }
+        internal virtual ICollection<Produkty_Do_zamowienia> Produkty_Do_zamowienia { get; set; }
     }
 }
