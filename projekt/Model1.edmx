@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hurtowniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Do_zamowienia">
+          <Key>
+            <PropertyRef Name="do_zamowienia" />
+          </Key>
+          <Property Name="do_zamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klienci">
+          <Key>
+            <PropertyRef Name="id_klienta" />
+          </Key>
+          <Property Name="id_klienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Telefon" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="Magazyny">
+          <Key>
+            <PropertyRef Name="id_magazynu" />
+          </Key>
+          <Property Name="id_magazynu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Platnosc">
+          <Key>
+            <PropertyRef Name="id_platnosci" />
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_platnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_platnosci" Type="date" Nullable="false" />
+          <Property Name="id_zamowienia" Type="int" Nullable="false" />
+          <Property Name="rodzaj_platnosci" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkty">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+          </Key>
+          <Property Name="id_produktu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'hurtownia.dbo.Produkty_Do_zamowienia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Produkty_Do_zamowienia">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="do_zamowienia" />
+          </Key>
+          <Property Name="id_produktu" Type="int" Nullable="false" />
+          <Property Name="do_zamowienia" Type="int" Nullable="false" />
+          <Property Name="ilosc" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'hurtownia.dbo.Produkty_Magazyn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Produkty_Magazyn">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="id_magazynu" />
+          </Key>
+          <Property Name="id_produktu" Type="int" Nullable="false" />
+          <Property Name="id_magazynu" Type="int" Nullable="false" />
+          <Property Name="ilosc" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'hurtownia.dbo.Produkty_Zamowienia_klientow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Produkty_Zamowienia_klientow">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_produktu" Type="int" Nullable="false" />
+          <Property Name="id_zamowienia" Type="int" Nullable="false" />
+          <Property Name="ilosc" Type="int" />
+        </EntityType>
+        <EntityType Name="Zamowienia_klientow">
+          <Key>
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_zamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_klienta" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Platnosc__id_zam__2F10007B">
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="1" />
+          <End Role="Platnosc" Type="Self.Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="id_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___do_za__31EC6D26">
+          <End Role="Do_zamowienia" Type="Self.Do_zamowienia" Multiplicity="1" />
+          <End Role="Produkty_Do_zamowienia" Type="Self.Produkty_Do_zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Do_zamowienia">
+              <PropertyRef Name="do_zamowienia" />
+            </Principal>
+            <Dependent Role="Produkty_Do_zamowienia">
+              <PropertyRef Name="do_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_ma__37A5467C">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="Produkty_Magazyn" Type="Self.Produkty_Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="id_magazynu" />
+            </Principal>
+            <Dependent Role="Produkty_Magazyn">
+              <PropertyRef Name="id_magazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__30F848ED">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Do_zamowienia" Type="Self.Produkty_Do_zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Do_zamowienia">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__33D4B598">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Zamowienia_klientow" Type="Self.Produkty_Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Zamowienia_klientow">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__36B12243">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Magazyn" Type="Self.Produkty_Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Magazyn">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_za__34C8D9D1">
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="1" />
+          <End Role="Produkty_Zamowienia_klientow" Type="Self.Produkty_Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Principal>
+            <Dependent Role="Produkty_Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zamowieni__id_kl__2C3393D0">
+          <End Role="Klienci" Type="Self.Klienci" Multiplicity="1" />
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klienci">
+              <PropertyRef Name="id_klienta" />
+            </Principal>
+            <Dependent Role="Zamowienia_klientow">
+              <PropertyRef Name="id_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hurtowniaModelStoreContainer">
+          <EntitySet Name="Do_zamowienia" EntityType="Self.Do_zamowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klienci" EntityType="Self.Klienci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyny" EntityType="Self.Magazyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platnosc" EntityType="Self.Platnosc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkty" EntityType="Self.Produkty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienia_klientow" EntityType="Self.Zamowienia_klientow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkty_Do_zamowienia" EntityType="Self.Produkty_Do_zamowienia" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Produkty_Do_zamowienia].[id_produktu] AS [id_produktu], 
+    [Produkty_Do_zamowienia].[do_zamowienia] AS [do_zamowienia], 
+    [Produkty_Do_zamowienia].[ilosc] AS [ilosc]
+    FROM [dbo].[Produkty_Do_zamowienia] AS [Produkty_Do_zamowienia]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Produkty_Magazyn" EntityType="Self.Produkty_Magazyn" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Produkty_Magazyn].[id_produktu] AS [id_produktu], 
+    [Produkty_Magazyn].[id_magazynu] AS [id_magazynu], 
+    [Produkty_Magazyn].[ilosc] AS [ilosc]
+    FROM [dbo].[Produkty_Magazyn] AS [Produkty_Magazyn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Produkty_Zamowienia_klientow" EntityType="Self.Produkty_Zamowienia_klientow" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Produkty_Zamowienia_klientow].[id_produktu] AS [id_produktu], 
+    [Produkty_Zamowienia_klientow].[id_zamowienia] AS [id_zamowienia], 
+    [Produkty_Zamowienia_klientow].[ilosc] AS [ilosc]
+    FROM [dbo].[Produkty_Zamowienia_klientow] AS [Produkty_Zamowienia_klientow]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Platnosc__id_zam__2F10007B" Association="Self.FK__Platnosc__id_zam__2F10007B">
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___do_za__31EC6D26" Association="Self.FK__Produkty___do_za__31EC6D26">
+            <End Role="Do_zamowienia" EntitySet="Do_zamowienia" />
+            <End Role="Produkty_Do_zamowienia" EntitySet="Produkty_Do_zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_ma__37A5467C" Association="Self.FK__Produkty___id_ma__37A5467C">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="Produkty_Magazyn" EntitySet="Produkty_Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__30F848ED" Association="Self.FK__Produkty___id_pr__30F848ED">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Do_zamowienia" EntitySet="Produkty_Do_zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__33D4B598" Association="Self.FK__Produkty___id_pr__33D4B598">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Zamowienia_klientow" EntitySet="Produkty_Zamowienia_klientow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__36B12243" Association="Self.FK__Produkty___id_pr__36B12243">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Magazyn" EntitySet="Produkty_Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_za__34C8D9D1" Association="Self.FK__Produkty___id_za__34C8D9D1">
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+            <End Role="Produkty_Zamowienia_klientow" EntitySet="Produkty_Zamowienia_klientow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zamowieni__id_kl__2C3393D0" Association="Self.FK__Zamowieni__id_kl__2C3393D0">
+            <End Role="Klienci" EntitySet="Klienci" />
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hurtowniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Do_zamowienia">
+          <Key>
+            <PropertyRef Name="do_zamowienia1" />
+          </Key>
+          <Property Name="do_zamowienia1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Produkty_Do_zamowienia" Relationship="Self.FK__Produkty___do_za__31EC6D26" FromRole="Do_zamowienia" ToRole="Produkty_Do_zamowienia" />
+        </EntityType>
+        <EntityType Name="Klienci">
+          <Key>
+            <PropertyRef Name="id_klienta" />
+          </Key>
+          <Property Name="id_klienta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zamowienia_klientow" Relationship="Self.FK__Zamowieni__id_kl__2C3393D0" FromRole="Klienci" ToRole="Zamowienia_klientow" />
+        </EntityType>
+        <EntityType Name="Magazyny">
+          <Key>
+            <PropertyRef Name="id_magazynu" />
+          </Key>
+          <Property Name="id_magazynu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Produkty_Magazyn" Relationship="Self.FK__Produkty___id_ma__37A5467C" FromRole="Magazyny" ToRole="Produkty_Magazyn" />
+        </EntityType>
+        <EntityType Name="Platnosc">
+          <Key>
+            <PropertyRef Name="id_platnosci" />
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_platnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_platnosci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_zamowienia" Type="Int32" Nullable="false" />
+          <Property Name="rodzaj_platnosci" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Zamowienia_klientow" Relationship="Self.FK__Platnosc__id_zam__2F10007B" FromRole="Platnosc" ToRole="Zamowienia_klientow" />
+        </EntityType>
+        <EntityType Name="Produkty">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+          </Key>
+          <Property Name="id_produktu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Produkty_Do_zamowienia" Relationship="Self.FK__Produkty___id_pr__30F848ED" FromRole="Produkty" ToRole="Produkty_Do_zamowienia" />
+          <NavigationProperty Name="Produkty_Zamowienia_klientow" Relationship="Self.FK__Produkty___id_pr__33D4B598" FromRole="Produkty" ToRole="Produkty_Zamowienia_klientow" />
+          <NavigationProperty Name="Produkty_Magazyn" Relationship="Self.FK__Produkty___id_pr__36B12243" FromRole="Produkty" ToRole="Produkty_Magazyn" />
+        </EntityType>
+        <EntityType Name="Zamowienia_klientow">
+          <Key>
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_zamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_klienta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klienci" Relationship="Self.FK__Zamowieni__id_kl__2C3393D0" FromRole="Zamowienia_klientow" ToRole="Klienci" />
+          <NavigationProperty Name="Platnosc" Relationship="Self.FK__Platnosc__id_zam__2F10007B" FromRole="Zamowienia_klientow" ToRole="Platnosc" />
+          <NavigationProperty Name="Produkty_Zamowienia_klientow" Relationship="Self.FK__Produkty___id_za__34C8D9D1" FromRole="Zamowienia_klientow" ToRole="Produkty_Zamowienia_klientow" />
+        </EntityType>
+        <EntityType Name="Produkty_Do_zamowienia">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="do_zamowienia" />
+          </Key>
+          <Property Name="id_produktu" Type="Int32" Nullable="false" />
+          <Property Name="do_zamowienia" Type="Int32" Nullable="false" />
+          <Property Name="ilosc" Type="Int32" />
+          <NavigationProperty Name="Do_zamowienia1" Relationship="Self.FK__Produkty___do_za__31EC6D26" FromRole="Produkty_Do_zamowienia" ToRole="Do_zamowienia" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty___id_pr__30F848ED" FromRole="Produkty_Do_zamowienia" ToRole="Produkty" />
+        </EntityType>
+        <EntityType Name="Produkty_Magazyn">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="id_magazynu" />
+          </Key>
+          <Property Name="id_produktu" Type="Int32" Nullable="false" />
+          <Property Name="id_magazynu" Type="Int32" Nullable="false" />
+          <Property Name="ilosc" Type="Int32" />
+          <NavigationProperty Name="Magazyny" Relationship="Self.FK__Produkty___id_ma__37A5467C" FromRole="Produkty_Magazyn" ToRole="Magazyny" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty___id_pr__36B12243" FromRole="Produkty_Magazyn" ToRole="Produkty" />
+        </EntityType>
+        <EntityType Name="Produkty_Zamowienia_klientow">
+          <Key>
+            <PropertyRef Name="id_produktu" />
+            <PropertyRef Name="id_zamowienia" />
+          </Key>
+          <Property Name="id_produktu" Type="Int32" Nullable="false" />
+          <Property Name="id_zamowienia" Type="Int32" Nullable="false" />
+          <Property Name="ilosc" Type="Int32" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty___id_pr__33D4B598" FromRole="Produkty_Zamowienia_klientow" ToRole="Produkty" />
+          <NavigationProperty Name="Zamowienia_klientow" Relationship="Self.FK__Produkty___id_za__34C8D9D1" FromRole="Produkty_Zamowienia_klientow" ToRole="Zamowienia_klientow" />
+        </EntityType>
+        <Association Name="FK__Produkty___do_za__31EC6D26">
+          <End Role="Do_zamowienia" Type="Self.Do_zamowienia" Multiplicity="1" />
+          <End Role="Produkty_Do_zamowienia" Type="Self.Produkty_Do_zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Do_zamowienia">
+              <PropertyRef Name="do_zamowienia1" />
+            </Principal>
+            <Dependent Role="Produkty_Do_zamowienia">
+              <PropertyRef Name="do_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zamowieni__id_kl__2C3393D0">
+          <End Role="Klienci" Type="Self.Klienci" Multiplicity="1" />
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klienci">
+              <PropertyRef Name="id_klienta" />
+            </Principal>
+            <Dependent Role="Zamowienia_klientow">
+              <PropertyRef Name="id_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_ma__37A5467C">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="Produkty_Magazyn" Type="Self.Produkty_Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="id_magazynu" />
+            </Principal>
+            <Dependent Role="Produkty_Magazyn">
+              <PropertyRef Name="id_magazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Platnosc__id_zam__2F10007B">
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="1" />
+          <End Role="Platnosc" Type="Self.Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="id_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__30F848ED">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Do_zamowienia" Type="Self.Produkty_Do_zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Do_zamowienia">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__33D4B598">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Zamowienia_klientow" Type="Self.Produkty_Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Zamowienia_klientow">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_pr__36B12243">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+          <End Role="Produkty_Magazyn" Type="Self.Produkty_Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="id_produktu" />
+            </Principal>
+            <Dependent Role="Produkty_Magazyn">
+              <PropertyRef Name="id_produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produkty___id_za__34C8D9D1">
+          <End Role="Zamowienia_klientow" Type="Self.Zamowienia_klientow" Multiplicity="1" />
+          <End Role="Produkty_Zamowienia_klientow" Type="Self.Produkty_Zamowienia_klientow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Principal>
+            <Dependent Role="Produkty_Zamowienia_klientow">
+              <PropertyRef Name="id_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hurtowniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Do_zamowienia" EntityType="Self.Do_zamowienia" />
+          <EntitySet Name="Klienci" EntityType="Self.Klienci" />
+          <EntitySet Name="Magazyny" EntityType="Self.Magazyny" />
+          <EntitySet Name="Platnosc" EntityType="Self.Platnosc" />
+          <EntitySet Name="Produkty" EntityType="Self.Produkty" />
+          <EntitySet Name="Zamowienia_klientow" EntityType="Self.Zamowienia_klientow" />
+          <EntitySet Name="Produkty_Do_zamowienia" EntityType="Self.Produkty_Do_zamowienia" />
+          <EntitySet Name="Produkty_Magazyn" EntityType="Self.Produkty_Magazyn" />
+          <EntitySet Name="Produkty_Zamowienia_klientow" EntityType="Self.Produkty_Zamowienia_klientow" />
+          <AssociationSet Name="FK__Produkty___do_za__31EC6D26" Association="Self.FK__Produkty___do_za__31EC6D26">
+            <End Role="Do_zamowienia" EntitySet="Do_zamowienia" />
+            <End Role="Produkty_Do_zamowienia" EntitySet="Produkty_Do_zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zamowieni__id_kl__2C3393D0" Association="Self.FK__Zamowieni__id_kl__2C3393D0">
+            <End Role="Klienci" EntitySet="Klienci" />
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_ma__37A5467C" Association="Self.FK__Produkty___id_ma__37A5467C">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="Produkty_Magazyn" EntitySet="Produkty_Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Platnosc__id_zam__2F10007B" Association="Self.FK__Platnosc__id_zam__2F10007B">
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__30F848ED" Association="Self.FK__Produkty___id_pr__30F848ED">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Do_zamowienia" EntitySet="Produkty_Do_zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__33D4B598" Association="Self.FK__Produkty___id_pr__33D4B598">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Zamowienia_klientow" EntitySet="Produkty_Zamowienia_klientow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_pr__36B12243" Association="Self.FK__Produkty___id_pr__36B12243">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Produkty_Magazyn" EntitySet="Produkty_Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produkty___id_za__34C8D9D1" Association="Self.FK__Produkty___id_za__34C8D9D1">
+            <End Role="Zamowienia_klientow" EntitySet="Zamowienia_klientow" />
+            <End Role="Produkty_Zamowienia_klientow" EntitySet="Produkty_Zamowienia_klientow" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hurtowniaModelStoreContainer" CdmEntityContainer="hurtowniaEntities">
+          <EntitySetMapping Name="Do_zamowienia">
+            <EntityTypeMapping TypeName="hurtowniaModel.Do_zamowienia">
+              <MappingFragment StoreEntitySet="Do_zamowienia">
+                <ScalarProperty Name="do_zamowienia1" ColumnName="do_zamowienia" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klienci">
+            <EntityTypeMapping TypeName="hurtowniaModel.Klienci">
+              <MappingFragment StoreEntitySet="Klienci">
+                <ScalarProperty Name="id_klienta" ColumnName="id_klienta" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magazyny">
+            <EntityTypeMapping TypeName="hurtowniaModel.Magazyny">
+              <MappingFragment StoreEntitySet="Magazyny">
+                <ScalarProperty Name="id_magazynu" ColumnName="id_magazynu" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platnosc">
+            <EntityTypeMapping TypeName="hurtowniaModel.Platnosc">
+              <MappingFragment StoreEntitySet="Platnosc">
+                <ScalarProperty Name="id_platnosci" ColumnName="id_platnosci" />
+                <ScalarProperty Name="data_platnosci" ColumnName="data_platnosci" />
+                <ScalarProperty Name="id_zamowienia" ColumnName="id_zamowienia" />
+                <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkty">
+            <EntityTypeMapping TypeName="hurtowniaModel.Produkty">
+              <MappingFragment StoreEntitySet="Produkty">
+                <ScalarProperty Name="id_produktu" ColumnName="id_produktu" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienia_klientow">
+            <EntityTypeMapping TypeName="hurtowniaModel.Zamowienia_klientow">
+              <MappingFragment StoreEntitySet="Zamowienia_klientow">
+                <ScalarProperty Name="id_zamowienia" ColumnName="id_zamowienia" />
+                <ScalarProperty Name="id_klienta" ColumnName="id_klienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkty_Do_zamowienia">
+            <EntityTypeMapping TypeName="hurtowniaModel.Produkty_Do_zamowienia">
+              <MappingFragment StoreEntitySet="Produkty_Do_zamowienia">
+                <ScalarProperty Name="id_produktu" ColumnName="id_produktu" />
+                <ScalarProperty Name="do_zamowienia" ColumnName="do_zamowienia" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkty_Magazyn">
+            <EntityTypeMapping TypeName="hurtowniaModel.Produkty_Magazyn">
+              <MappingFragment StoreEntitySet="Produkty_Magazyn">
+                <ScalarProperty Name="id_produktu" ColumnName="id_produktu" />
+                <ScalarProperty Name="id_magazynu" ColumnName="id_magazynu" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkty_Zamowienia_klientow">
+            <EntityTypeMapping TypeName="hurtowniaModel.Produkty_Zamowienia_klientow">
+              <MappingFragment StoreEntitySet="Produkty_Zamowienia_klientow">
+                <ScalarProperty Name="id_produktu" ColumnName="id_produktu" />
+                <ScalarProperty Name="id_zamowienia" ColumnName="id_zamowienia" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
