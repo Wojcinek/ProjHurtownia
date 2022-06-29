@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:projekt"
         mc:Ignorable="d"
         Title="Mag" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="MagazynyTabela"></DataGrid>
+    <Grid Margin="96,0,0,129">
+        <DataGrid x:Name="MagazynyTabela" Margin="-84,10,10,-10"></DataGrid>
+        <Button x:Name="Dodaj" Content="Button" HorizontalAlignment="Left" Height="47" Margin="439,337,0,-94" VerticalAlignment="Top" Width="69" Click="Magazyn_dodaj"/>
+        <TextBox x:Name="NazwaText" HorizontalAlignment="Left" Height="23" Margin="-44,316,0,-49" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="AdresText" HorizontalAlignment="Left" Height="23" Margin="115,323,0,-56" TextWrapping="Wrap" Text="Adres" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>

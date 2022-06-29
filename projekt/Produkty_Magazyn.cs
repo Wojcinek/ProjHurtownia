@@ -18,7 +18,7 @@ namespace projekt
         public int id_magazynu { get; set; }
         public Nullable<int> ilosc { get; set; }
     
-        public virtual Magazyny Magazyny { get; set; }
-        public virtual Produkty Produkty { get; set; }
+        internal virtual Magazyny Magazyny { get; set; }
+        internal virtual Produkty Produkty { get; set; }
     }
 }

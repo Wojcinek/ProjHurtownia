@@ -20,10 +20,24 @@ namespace projekt
     public partial class Mag : Window
     {
         hurtowniaEntities baza = new hurtowniaEntities();
+
         public Mag()
         {
             InitializeComponent();
             MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
         }
+
+        private void Magazyn_dodaj(object sender, RoutedEventArgs e)
+        {
+            Magazyny mag = new Magazyny()
+            {
+               nazwa = NazwaText.Text,
+               adres = AdresText.Text
+            };
+
+            baza.Magazyny.Add(mag);
+            baza.SaveChanges();
+            MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
+       }
     }
 }
