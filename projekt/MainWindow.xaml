@@ -10,12 +10,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="magazyny" Content="Magazyny" HorizontalAlignment="Left" Height="24" Margin="81,251,0,0" VerticalAlignment="Top" Width="146" Click="magazyn_Click"/>
-        <Button x:Name="klienci" Content="Klienci" HorizontalAlignment="Left" Height="24" Margin="81,315,0,0" VerticalAlignment="Top" Width="146" Click="klient_Click"/>
-        <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="24" Margin="309,315,0,0" VerticalAlignment="Top" Width="146" Click="produkt_Click"/>
-        <Button x:Name="zamowienia" Content="Zamowienia" HorizontalAlignment="Left" Height="24" Margin="351,251,0,0" VerticalAlignment="Top" Width="146" Click="zamowienie_Click"/>
-        <Button x:Name="braki" Content="Braki" HorizontalAlignment="Left" Height="24" Margin="546,251,0,0" VerticalAlignment="Top" Width="146" Click="brak_Click"/>
-        
+
+
+        <Button x:Name="magazyny" Content="Magazyny" HorizontalAlignment="Left" Height="50" Margin="80,186,0,0" VerticalAlignment="Top" Width="250" Click="magazyn_Click"/>
+        <Button x:Name="klienci" Content="Klienci" HorizontalAlignment="Left" Height="55" Margin="451,310,80,0" VerticalAlignment="Top" Width="250" Click="klient_Click"/>
+        <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="50" Margin="451,186,0,0" VerticalAlignment="Top" Width="250" Click="produkt_Click"/>
+        <Button x:Name="zamowienia" Content="Zamowienia" HorizontalAlignment="Left" Height="50" Margin="80,315,80,0" VerticalAlignment="Top" Width="250" Click="zamowienie_Click"/>
+        <StackPanel HorizontalAlignment="Left" Height="257" VerticalAlignment="Top" Width="772" Margin="10,152,0,0"/>
+
 
     </Grid>
 </Window>
