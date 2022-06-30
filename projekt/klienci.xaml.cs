@@ -25,5 +25,22 @@ namespace projekt
             InitializeComponent();
             KlienciTabela.ItemsSource = baza.Klienci.ToList();
         }
+
+        private void Klienci_dodaj(object sender, RoutedEventArgs e)
+        {
+             Klienci klienci = new Klienci()
+            {
+                Imie = ImieText.Text,
+                Nazwisko = NazwiskoText.Text,
+                Adres = AdresText.Text,
+                Telefon = TelefonText.Text,
+                Email = EmailText.Text
+
+            };
+
+            baza.Klienci.Add(klienci);
+            baza.SaveChanges();
+            KlienciTabela.ItemsSource = baza.Klienci.ToList();
+        }
     }
 }
