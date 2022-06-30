@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projekt"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-
         <Button x:Name="magazyny" Content="Magazyny" HorizontalAlignment="Left" Height="50" Margin="80,186,0,0" VerticalAlignment="Top" Width="250" Click="magazyn_Click"/>
         <Button x:Name="klienci" Content="Klienci" HorizontalAlignment="Left" Height="55" Margin="451,310,80,0" VerticalAlignment="Top" Width="250" Click="klient_Click"/>
         <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="50" Margin="451,186,0,0" VerticalAlignment="Top" Width="250" Click="produkt_Click"/>

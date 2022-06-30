@@ -46,5 +46,16 @@ namespace projekt
             tb.Show();
             this.Close();
         }
+
+        private void usun_click(object sender, RoutedEventArgs e)
+        {
+            if(MagazynyTabela.SelectedValue != null) 
+            { 
+            var magazyn = baza.Magazyny.FirstOrDefault(m => m.id_magazynu == ((Magazyny)MagazynyTabela.SelectedValue).id_magazynu);
+            baza.Magazyny.Remove(magazyn);
+            baza.SaveChanges();
+            MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
+            }
+        }
     }
 }
