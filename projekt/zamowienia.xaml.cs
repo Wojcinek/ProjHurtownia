@@ -29,7 +29,16 @@ namespace projekt
         
         private void Zamowienia_dodaj(object sender, RoutedEventArgs e)
         {
+            Platnosc zamo = new Platnosc()
+            {
+                data_platnosci = Convert.ToDateTime(DataText.Text),
+                id_zamowienia = Convert.ToInt32(Id_zamowienaText.Text),
+                rodzaj_platnosci = RodzajPlatnosciText.Text
+            };
 
+            baza.Platnosc.Add(zamo);
+            baza.SaveChanges();
+            ZamowieniaTabela.ItemsSource = baza.Platnosc.ToList();
         }
 
         private void main_click(object sender, RoutedEventArgs e)
