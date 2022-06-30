@@ -39,5 +39,12 @@ namespace projekt
             baza.SaveChanges();
             MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
        }
+
+        private void main_click(object sender, RoutedEventArgs e)
+        {
+            MainWindow tb = new MainWindow();
+            tb.Show();
+            this.Close();
+        }
     }
 }

@@ -29,28 +29,28 @@ namespace projekt
         {
             Mag tb = new Mag();
             tb.Show();
-            //this.Close();
+            this.Close();
         }
 
         private void zamowienie_Click(object sender, RoutedEventArgs e)
         {
             zamowienia tb = new zamowienia();
             tb.Show();
+            this.Close();
+
         }
         private void produkt_Click(object sender, RoutedEventArgs e)
         {
             produkty tb = new produkty();
             tb.Show();
+            this.Close();
         }
         private void klient_Click(object sender, RoutedEventArgs e)
         {
             klienci tb = new klienci();
             tb.Show();
+            this.Close();
         }
-        private void brak_Click(object sender, RoutedEventArgs e)
-        {
-            braki tb = new braki();
-            tb.Show();
-        }
+        
     }
 }

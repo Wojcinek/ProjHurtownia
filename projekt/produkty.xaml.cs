@@ -23,7 +23,27 @@ namespace projekt
         public produkty()
         {
             InitializeComponent();
-            ProduktyTabela.ItemsSource = baza.Produkty_Magazyn.ToList();
+            ProduktyTabela.ItemsSource = baza.Produkty.ToList();
+        }
+
+        private void Produkty_dodaj(object sender, RoutedEventArgs e)
+        {
+            Produkty produkt = new Produkty()
+            {
+                cena = Convert.ToDecimal(CenaText.Text),
+                nazwa = NazwaText.Text
+            };
+
+            baza.Produkty.Add(produkt);
+            baza.SaveChanges();
+            ProduktyTabela.ItemsSource = baza.Produkty.ToList();
+        }
+
+        private void main_click(object sender, RoutedEventArgs e)
+        {
+            MainWindow tb = new MainWindow();
+            tb.Show();
+            this.Close();
         }
     }
 }

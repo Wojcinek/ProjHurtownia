@@ -13,6 +13,6 @@
         <TextBox x:Name="AdresText" HorizontalAlignment="Left" Height="23" Margin="74,323,0,-200" TextWrapping="Wrap" Text="Adres" VerticalAlignment="Top" Width="120"/>
         <StackPanel HorizontalAlignment="Left" Height="292" Margin="-84,10,0,-83" VerticalAlignment="Top" Width="772"/>
         <StackPanel HorizontalAlignment="Left" Height="62" Margin="-84,307,0,-500" VerticalAlignment="Top" Width="400"/>
-
+        <Button Content="Wróć" HorizontalAlignment="Left" Height="20" Margin="334,388,0,-200" VerticalAlignment="Top" Width="69" Click="main_click"/>      
     </Grid>
 </Window>

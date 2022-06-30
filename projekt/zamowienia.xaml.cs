@@ -23,7 +23,22 @@ namespace projekt
         public zamowienia()
         {
             InitializeComponent();
-            ZamowieniaTabela.ItemsSource = baza.Zamowienia_klientow.ToList();
+            ZamowieniaTabela.ItemsSource = baza.Platnosc.ToList();
+        }
+
+        
+        private void Zamowienia_dodaj(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void main_click(object sender, RoutedEventArgs e)
+        {
+
+           MainWindow tb = new MainWindow();
+           tb.Show();
+           this.Close();
+
         }
     }
 }

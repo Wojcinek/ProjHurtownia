@@ -42,5 +42,12 @@ namespace projekt
             baza.SaveChanges();
             KlienciTabela.ItemsSource = baza.Klienci.ToList();
         }
+
+        private void main_click(object sender, RoutedEventArgs e)
+        {
+            MainWindow tb = new MainWindow();
+            tb.Show();
+            this.Close();
+        }
     }
 }
