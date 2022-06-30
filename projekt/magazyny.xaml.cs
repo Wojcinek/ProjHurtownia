@@ -57,5 +57,11 @@ namespace projekt
             MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
             }
         }
+
+        private void zapisz_click(object sender, RoutedEventArgs e)
+        {
+            Magazyny mag = new Magazyny();
+            baza.SaveChanges();
+        }
     }
 }
