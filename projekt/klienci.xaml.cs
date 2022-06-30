@@ -49,5 +49,22 @@ namespace projekt
             tb.Show();
             this.Close();
         }
+
+        private void zapisz_click(object sender, RoutedEventArgs e)
+        {
+            Klienci mag = new Klienci();
+            baza.SaveChanges();
+        }
+
+        private void usun_click(object sender, RoutedEventArgs e)
+        {
+            if (KlienciTabela.SelectedValue != null)
+            {
+                var klienci = baza.Klienci.FirstOrDefault(m => m.id_klienta == ((Klienci)KlienciTabela.SelectedValue).id_klienta);
+                baza.Klienci.Remove(klienci);
+                baza.SaveChanges();
+                KlienciTabela.ItemsSource = baza.Klienci.ToList();
+            }
+        }
     }
 }

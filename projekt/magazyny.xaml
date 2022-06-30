@@ -14,8 +14,8 @@
         <TextBox x:Name="AdresText" HorizontalAlignment="Left" Height="23" Margin="74,323,0,-200" TextWrapping="Wrap" Text="Adres" VerticalAlignment="Top" Width="120"/>
         <StackPanel HorizontalAlignment="Left" Height="292" Margin="-84,10,0,-83" VerticalAlignment="Top" Width="772"/>
         <StackPanel HorizontalAlignment="Left" Height="62" Margin="-84,307,0,-500" VerticalAlignment="Top" Width="400"/>
-        <Button Content="Wróć" HorizontalAlignment="Left" Height="23" Margin="603,384,0,-200" VerticalAlignment="Top" Width="70" Click="main_click"/>
+        <Button Content="Wróć" HorizontalAlignment="Left" Height="23" Margin="603,380,0,-200" VerticalAlignment="Top" Width="70" Click="main_click"/>
         <Button Content="Usuń" HorizontalAlignment="Left" Height="23" Margin="603,323,0,-200" VerticalAlignment="Top" Width="70" Click="usun_click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="23" Margin="603,351,0,-200" VerticalAlignment="Top" Width="70" Click="zapisz_click"/>
+        <Button Content="Edytuj" HorizontalAlignment="Left" Height="23" Margin="603,352,0,-200" VerticalAlignment="Top" Width="70" Click="zapisz_click"/>
     </Grid>
 </Window>
