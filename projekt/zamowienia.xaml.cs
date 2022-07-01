@@ -60,7 +60,14 @@ namespace projekt
         private void zapisz_click(object sender, RoutedEventArgs e)
         {
             Platnosc mag = new Platnosc();
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException exception)
+            {
+                MessageBox.Show("Nie można zapisać");
+            }
         }
 
         private void usun_click(object sender, RoutedEventArgs e)
