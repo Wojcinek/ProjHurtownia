@@ -15,7 +15,7 @@
         <StackPanel HorizontalAlignment="Left" Height="292" Margin="-84,10,0,-83" VerticalAlignment="Top" Width="772"/>
         <StackPanel HorizontalAlignment="Left" Height="62" Margin="-84,307,0,-500" VerticalAlignment="Top" Width="400"/>
         <Button Content="Wróć" HorizontalAlignment="Left" Height="23" Margin="602,380,0,-200" VerticalAlignment="Top" Width="69" Click="main_click"/>
-        <Button Content="Edytuj" HorizontalAlignment="Left" Height="23" Margin="602,352,0,-85" VerticalAlignment="Top" Width="69" Click="edytuj_click"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Height="23" Margin="602,324,0,-57" VerticalAlignment="Top" Width="69" Click="usun_click"/>
+        <Button Content="Zapisz" HorizontalAlignment="Left" Height="23" Margin="602,352,0,-200" VerticalAlignment="Top" Width="69" Click="edytuj_click"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Height="23" Margin="602,324,0,-200" VerticalAlignment="Top" Width="69" Click="usun_click"/>
     </Grid>
 </Window>

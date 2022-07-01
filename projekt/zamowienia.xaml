@@ -15,8 +15,8 @@
         <TextBox x:Name="RodzajPlatnosciText" HorizontalAlignment="Left" Height="23" Margin="192,323,0,-200" TextWrapping="Wrap" Text="Rodzaj Płatności" VerticalAlignment="Top" Width="120"/>
         <StackPanel HorizontalAlignment="Left" Height="292" Margin="-84,10,0,-83" VerticalAlignment="Top" Width="772"/>
         <StackPanel HorizontalAlignment="Left" Height="62" Margin="-84,307,0,-200" VerticalAlignment="Top" Width="509"/>
-        <Button Content="Wróć" HorizontalAlignment="Left" Height="20" Margin="604,384,0,-114" VerticalAlignment="Top" Width="69" Click="main_click"/>
-        <Button Content="Edytuj" HorizontalAlignment="Left" Height="20" Margin="604,354,0,-84" VerticalAlignment="Top" Width="69" Click="zapisz_click"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Height="20" Margin="604,325,0,-55" VerticalAlignment="Top" Width="69" Click="usun_click"/>
+        <Button Content="Wróć" HorizontalAlignment="Left" Height="20" Margin="604,384,0,-200" VerticalAlignment="Top" Width="69" Click="main_click"/>
+        <Button Content="Zapisz" HorizontalAlignment="Left" Height="20" Margin="604,354,0,-200" VerticalAlignment="Top" Width="69" Click="zapisz_click"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Height="20" Margin="604,325,0,-200" VerticalAlignment="Top" Width="69" Click="usun_click"/>
     </Grid>
 </Window>
