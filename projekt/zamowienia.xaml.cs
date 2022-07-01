@@ -37,7 +37,14 @@ namespace projekt
             };
 
             baza.Platnosc.Add(zamo);
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException exception)
+            {
+                MessageBox.Show("Nie można dodać");
+            }
             ZamowieniaTabela.ItemsSource = baza.Platnosc.ToList();
         }
 
