@@ -6,17 +6,21 @@
         xmlns:local="clr-namespace:projekt"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        Background="#939499"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="magazyny" Content="Magazyny" HorizontalAlignment="Left" Height="50" Margin="80,186,0,0" VerticalAlignment="Top" Width="250" Click="magazyn_Click"/>
-        <Button x:Name="klienci" Content="Klienci" HorizontalAlignment="Left" Height="55" Margin="451,310,80,0" VerticalAlignment="Top" Width="250" Click="klient_Click"/>
-        <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="50" Margin="451,186,0,0" VerticalAlignment="Top" Width="250" Click="produkt_Click"/>
-        <Button x:Name="zamowienia" Content="Zamowienia" HorizontalAlignment="Left" Height="50" Margin="80,315,80,0" VerticalAlignment="Top" Width="250" Click="zamowienie_Click"/>
+        
+        <Button x:Name="magazyny" Content="Magazyny" HorizontalAlignment="Left" Height="50" Margin="80,186,0,0" VerticalAlignment="Top" Width="250" Click="magazyn_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
+        <Button x:Name="klienci" Content="Klienci" HorizontalAlignment="Left" Height="55" Margin="451,310,80,0" VerticalAlignment="Top" Width="250" Click="klient_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
+        <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="50" Margin="451,186,0,0" VerticalAlignment="Top" Width="250" Click="produkt_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
+        <Button x:Name="zamowienia" Content="Zamowienia" HorizontalAlignment="Left" Height="50" Margin="80,315,80,0" VerticalAlignment="Top" Width="250" Click="zamowienie_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
         <StackPanel HorizontalAlignment="Left" Height="257" VerticalAlignment="Top" Width="772" Margin="10,152,0,0"/>
 
+
+    
 
     </Grid>
 </Window>
