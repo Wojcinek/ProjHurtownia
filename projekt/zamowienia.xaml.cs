@@ -41,7 +41,7 @@ namespace projekt
             {
                 baza.SaveChanges();
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException exception)
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 MessageBox.Show("Nie można dodać");
             }
@@ -64,7 +64,7 @@ namespace projekt
             {
                 baza.SaveChanges();
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException exception)
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 MessageBox.Show("Nie można zapisać");
             }

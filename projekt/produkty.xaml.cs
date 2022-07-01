@@ -35,7 +35,14 @@ namespace projekt
             };
 
             baza.Produkty.Add(produkt);
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można dodać");
+            }
             ProduktyTabela.ItemsSource = baza.Produkty.ToList();
         }
 
@@ -49,7 +56,14 @@ namespace projekt
         private void edytuj_click(object sender, RoutedEventArgs e)
         {
             produkty mag = new produkty();
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można zapisać");
+            }
         }
 
         private void usun_click(object sender, RoutedEventArgs e)

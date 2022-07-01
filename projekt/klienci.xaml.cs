@@ -39,7 +39,14 @@ namespace projekt
             };
 
             baza.Klienci.Add(klienci);
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można dodać");
+            }
             KlienciTabela.ItemsSource = baza.Klienci.ToList();
         }
 
@@ -53,7 +60,14 @@ namespace projekt
         private void zapisz_click(object sender, RoutedEventArgs e)
         {
             Klienci mag = new Klienci();
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można zapisać");
+            }
         }
 
         private void usun_click(object sender, RoutedEventArgs e)

@@ -36,7 +36,14 @@ namespace projekt
             };
 
             baza.Magazyny.Add(mag);
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można dodać");
+            }
             MagazynyTabela.ItemsSource = baza.Magazyny.ToList();
        }
 
@@ -61,7 +68,14 @@ namespace projekt
         private void zapisz_click(object sender, RoutedEventArgs e)
         {
             Magazyny mag = new Magazyny();
-            baza.SaveChanges();
+            try
+            {
+                baza.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie można zapisać");
+            }
         }
     }
 }
