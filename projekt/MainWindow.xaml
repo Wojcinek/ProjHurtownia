@@ -18,9 +18,10 @@
         <Button x:Name="produkty" Content="Produkty" HorizontalAlignment="Left" Height="50" Margin="451,186,0,0" VerticalAlignment="Top" Width="250" Click="produkt_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
         <Button x:Name="zamowienia" Content="Zamowienia" HorizontalAlignment="Left" Height="50" Margin="80,315,80,0" VerticalAlignment="Top" Width="250" Click="zamowienie_Click" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
         <StackPanel HorizontalAlignment="Left" Height="257" VerticalAlignment="Top" Width="772" Margin="10,152,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="65" Margin="242,61,0,0" TextWrapping="Wrap" Text="Hurtownia" FontSize="50" VerticalAlignment="Top" Width="302" Background="Transparent" TextAlignment="Center"/>
 
 
-    
+
 
     </Grid>
 </Window>
