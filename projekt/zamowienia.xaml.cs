@@ -49,5 +49,22 @@ namespace projekt
            this.Close();
 
         }
+
+        private void zapisz_click(object sender, RoutedEventArgs e)
+        {
+            Platnosc mag = new Platnosc();
+            baza.SaveChanges();
+        }
+
+        private void usun_click(object sender, RoutedEventArgs e)
+        {
+            if (ZamowieniaTabela.SelectedValue != null)
+            {
+                var platnosc = baza.Platnosc.FirstOrDefault(m => m.id_platnosci == ((Platnosc)ZamowieniaTabela.SelectedValue).id_platnosci);
+                baza.Platnosc.Remove(platnosc);
+                baza.SaveChanges();
+                ZamowieniaTabela.ItemsSource = baza.Platnosc.ToList();
+            }
+        }
     }
 }

@@ -45,7 +45,23 @@ namespace projekt
             tb.Show();
             this.Close();
         }
+
+        private void edytuj_click(object sender, RoutedEventArgs e)
+        {
+            produkty mag = new produkty();
+            baza.SaveChanges();
+        }
+
+        private void usun_click(object sender, RoutedEventArgs e)
+        {
+            if (ProduktyTabela.SelectedValue != null)
+            {
+                var produkty = baza.Produkty.FirstOrDefault(m => m.id_produktu == ((Produkty)ProduktyTabela.SelectedValue).id_produktu);
+                baza.Produkty.Remove(produkty);
+                baza.SaveChanges();
+                ProduktyTabela.ItemsSource = baza.Produkty.ToList();
+            }
+        }
     }
 }
-
 
