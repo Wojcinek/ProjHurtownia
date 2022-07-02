@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Title="Mag" Height="450" Width="800" ResizeMode="NoResize">
     <Grid Margin="96,0,0,129">
-        <DataGrid x:Name="MagazynyTabela" Margin="-84,10,10,-10"></DataGrid>
+        <DataGrid x:Name="MagazynyTabela" Margin="-84,10,10,-10" Background="#a7a9b5"></DataGrid>
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="221,323,0,-200" VerticalAlignment="Top" Width="69" Click="Magazyn_dodaj" Background="#a7a9b5" BorderBrush="#3d3e40" Style="{DynamicResource ButtonStyle}"/>
         <TextBox x:Name="NazwaText" HorizontalAlignment="Left" Height="23" Margin="-72,323,0,-200" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="120" Background="#a7a9b5" BorderBrush="#3d3e40"/>
         <TextBox x:Name="AdresText" HorizontalAlignment="Left" Height="23" Margin="74,323,0,-200" TextWrapping="Wrap" Text="Adres" VerticalAlignment="Top" Width="120" Background="#a7a9b5" BorderBrush="#3d3e40"/>
